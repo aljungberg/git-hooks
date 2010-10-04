@@ -49,6 +49,13 @@ DESCRIPTION
         Normally capp_lint.py will print a list of the errors it finds. If this option is passed,
         the error list is suppressed. This option is mutually exclusive with the -v option.
 
+    -f/--format=[text|textmate]
+        Choose an output format.
+
+            text - Plain text output. This is the default.
+            textmate - HTML with clickable TextMate hyperlinks which brings up each error in the
+                       editor.
+
     -h/--help
         Shows a synopsis of the usage and options and exits.
 
@@ -86,6 +93,17 @@ OUTPUT
     The filename (relative to the working directory), line number, and type of error are displayed
     first, followed by the offending line of source code. When possible and necessary (as in this example),
     the location of the errors is indicated below the source line.
+
+TEXTMATE INTEGRATION
+    Cappuccino Lint can easily be called upon from within TextMate. A sample Cappuccino Bundle patch
+    is available here:
+
+    http://github.com/aljungberg/Cappuccino.tmbundle/commit/091474a647fb946301ae0575df3eada95cb78734
+
+    To use it, Cappuccino Lint should be added to your path. Add this to your .profile:
+
+    PATH="/full/path/to/capp_lint/bin/:${PATH}"
+    export PATH
 
 KNOWN BUGS
     capp_lint.py will currently flag false positives for the following cases I know of:
