@@ -642,7 +642,8 @@ class LintChecker(object):
                 print format_err(filename, error)
 
             print "</div>"
-        else:
+
+        if not self.errors:
             print "<p class='success'>All clean.</p>"
 
         print """
