@@ -583,9 +583,6 @@ class LintChecker(object):
 
 
     def print_errors(self, format='text'):
-        if not self.errors:
-            return
-
         if format == 'text':
             self.print_text_errors()
         elif format == 'textmate':
@@ -616,7 +613,9 @@ class LintChecker(object):
     <head>
         <title>Cappuccino Lint Report</title>
     </head>
-    <body>"""
+    <body>
+        <h2>Cappuccino Lint Report</h2>
+    """
 
         for error in self.errors:
             print "<div>"
@@ -643,6 +642,8 @@ class LintChecker(object):
                 print format_err(filename, error)
 
             print "</div>"
+        else:
+            print "<p class='success'>All clean.</p>"
 
         print """
     </body>
@@ -682,9 +683,10 @@ if __name__ == '__main__':
         if filename.endswith('.j'):
             checker.lint(filename)
 
+    if not options.quiet:
+        checker.print_errors(options.format)
+
     if checker.has_errors():
-        if not options.quiet:
-            checker.print_errors(options.format)
         sys.exit(1)
     else:
         sys.exit(0)
